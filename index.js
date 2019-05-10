@@ -8,8 +8,18 @@ const { Toolkit } = require('actions-toolkit');
   let details = null;
 
   async function postComment() {
-    await tools.github.pulls.createComment({
-      ...tools.context.issue,
+    const {
+      issue: {
+        owner,
+        repo,
+        issue_number: number,
+      },
+    } = tools.context;
+
+    await octokit.issues.createComment({
+      owner,
+      repo,
+      issue_number,
       body: `## npm audit report\n\n\`\`\`\n${details}\n\`\`\``,
     });
   }
