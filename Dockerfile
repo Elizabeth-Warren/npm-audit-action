@@ -9,6 +9,6 @@ COPY "bin/audit.js" "/audit.js"
 
 RUN npm install actions-toolkit
 
-RUN ls
+RUN echo "${PWD##*/}"
 
 CMD ["node", "audit.js"]
