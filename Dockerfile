@@ -9,4 +9,6 @@ COPY "bin/audit.js" "/audit.js"
 
 RUN npm install actions-toolkit
 
+RUN ls
+
 CMD ["node", "audit.js"]
