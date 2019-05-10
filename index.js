@@ -5,16 +5,29 @@ const { Toolkit } = require('actions-toolkit');
     event: ['pull_request'],
   });
 
-  try {
-    const result = await tools.runInWorkspace('npm', ['audit']);
+  let details = null;
 
-    console.log('result', result);
-
+  async function postComment() {
     await tools.github.pulls.createComment({
       ...tools.context.issue,
-      body: `## npm audit report\n\n\`\`\`\n${result}\n\`\`\``,
+      body: `## npm audit report\n\n\`\`\`\n${details}\n\`\`\``,
     });
+  }
+
+  try {
+    details = await tools.runInWorkspace('npm', ['audit']);
   } catch (error) {
-    console.error('error', error);
+    if (error
+      && error.message
+      && error.message.includes('npm audit security report')
+    ) {
+      details = error.message;
+    } else {
+      console.error('error', error);
+    }
+  }
+
+  if (details) {
+    await postComment();
   }
 })();
