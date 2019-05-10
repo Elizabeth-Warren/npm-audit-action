@@ -16,5 +16,6 @@ workflow "Audit npm packages" {
 
 action "npm audit" {
   uses = "elizabeth-warren/npm-audit-action@master"
+  secrets = ["GITHUB_TOKEN"]
 }
 ```

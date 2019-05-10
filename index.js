@@ -31,7 +31,7 @@ const { Toolkit } = require('actions-toolkit');
       && error.message
       && error.message.includes('npm audit security report')
     ) {
-      details = error.message;
+      details = error.message.replace('Command failed: npm audit', '');
     } else {
       console.error('error', error);
     }
