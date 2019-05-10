@@ -16,7 +16,7 @@ const { Toolkit } = require('actions-toolkit');
       },
     } = tools.context;
 
-    await octokit.issues.createComment({
+    await tools.github.issues.createComment({
       owner,
       repo,
       issue_number,
