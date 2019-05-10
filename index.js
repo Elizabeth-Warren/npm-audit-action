@@ -12,7 +12,7 @@ const { Toolkit } = require('actions-toolkit');
       issue: {
         owner,
         repo,
-        issue_number: number,
+        number: issue_number,
       },
     } = tools.context;
 
