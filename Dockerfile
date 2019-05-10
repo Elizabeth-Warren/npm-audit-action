@@ -5,8 +5,14 @@ LABEL "com.github.actions.description"="Run `npm audit` on every pull requet"
 LABEL "com.github.actions.icon"="crosshair"
 LABEL "com.github.actions.color"="red"
 
-COPY audit.js ./audit.js
+# Copy the package.json and package-lock.json
+COPY package*.json ./
 
-RUN npm install actions-toolkit
+# Install dependencies
+RUN npm ci
 
-CMD ["node", "./audit.js"]
+# Copy the rest of your action's code
+COPY . .
+
+# Run `node /index.js`
+ENTRYPOINT ["node", "/index.js"]
