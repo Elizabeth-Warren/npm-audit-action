@@ -2,7 +2,7 @@ const { Toolkit } = require('actions-toolkit');
 
 (async function() {
   const tools = new Toolkit({
-    event: ['pull_request'],
+    event: ['pull_request.opened'],
   });
 
   let details = null;
