@@ -14,6 +14,11 @@ workflow "Audit npm packages" {
   resolves = ["npm audit"]
 }
 
+workflow "Audit npm packages on command" {
+  on = "issue_comment"
+  resolves = ["npm audit"]
+}
+
 action "npm audit" {
   uses = "elizabeth-warren/npm-audit-action@master"
   secrets = ["GITHUB_TOKEN"]
