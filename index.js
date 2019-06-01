@@ -21,7 +21,8 @@ async function audit(tools) {
   let details = null;
 
   try {
-    details = await tools.runInWorkspace('npm', ['audit']);
+    const { stdout } = await tools.runInWorkspace('npm', ['audit']);
+    details = stdout;
   } catch (error) {
     if (error
       && error.message
