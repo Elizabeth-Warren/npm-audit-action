@@ -19,3 +19,7 @@ action "npm audit" {
   secrets = ["GITHUB_TOKEN"]
 }
 ```
+
+## Local Development
+
+Use [act](https://github.com/nektos/act) for running Github actions locally.
