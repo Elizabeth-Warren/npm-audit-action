@@ -1,0 +1,12 @@
+on: issue_comment
+name: Audit npm packages on command
+jobs:
+  npmAudit:
+    name: npm audit
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: npm audit
+      uses: ./
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
